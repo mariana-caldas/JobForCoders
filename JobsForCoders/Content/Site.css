@@ -1,0 +1,96 @@
+﻿/*Home*/
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin: auto;
+    font-family: 'Gadugi', sans-serif;
+}
+
+.jumbotron {
+    background-color: #FF5722;
+    color: #fff;
+    text-align: center;
+    margin: 0px;
+    width: auto;
+    
+}
+
+.whatwhere{
+    margin-top: 40px;
+}
+
+.row{
+   padding-left: 80px;
+   padding-right: 80px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 600px;
+}
+.btn-login {
+    margin-top: 68px;
+}
+.btn.btn-default{
+    background-color: #ff5722;
+    color: #FFF;
+    border-color: #ff5722;
+}
+
+.btn.btn-default:hover{
+    background-color: #808080;
+    border-color:#808080;
+}
+
+.labelcolor{
+    color: #808080;
+}
+.copy{
+    margin-left: 30px;
+}
+/*End of Home*/
+
+/*Login*/
+
+.panel.panel-default {
+    margin-top: 5%;
+}
+.logintext {
+    text-align: center;
+    margin-top: 3%;
+}
+
+.btn-block{
+    background-color: #FF5722;
+    border-color: #FF5722;
+}
+
+.btn-block:hover{
+    background-color: #808080;
+    border-color:#808080;
+}
+
+.member{
+    text-align: center;
+}
+
+/*End of Login*/
+
+
+/*Employer Login*/
+
+/*End of Employer Login*/
+
+.img-small {
+    width: 70px!important;
+    height: 70px!important;
+}
