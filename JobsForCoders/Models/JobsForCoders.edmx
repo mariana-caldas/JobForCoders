@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employer">
           <Key>
             <PropertyRef Name="EmployerID" />
@@ -32,6 +32,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Filled" Type="bit" Nullable="false" />
+          <Property Name="Salary" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="JobSeeker">
           <Key>
@@ -110,6 +111,7 @@
           <NavigationProperty Name="Employer" Relationship="Self.FK_JobPosting_Employer" FromRole="JobPosting" ToRole="Employer" />
           <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Filled" Type="Boolean" Nullable="false" />
+          <Property Name="Salary" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="JobSeeker">
           <Key>
@@ -181,6 +183,7 @@
           <EntitySetMapping Name="JobPostings">
             <EntityTypeMapping TypeName="jobsforcodersModel.JobPosting">
               <MappingFragment StoreEntitySet="JobPosting">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Filled" ColumnName="Filled" />
                 <ScalarProperty Name="Buzz_Words" ColumnName="Buzz-Words" />
                 <ScalarProperty Name="JobID" ColumnName="JobID" />

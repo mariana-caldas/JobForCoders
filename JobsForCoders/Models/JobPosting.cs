@@ -21,6 +21,7 @@ namespace JobsForCoders.Models
         public string Description { get; set; }
         public string Buzz_Words { get; set; }
         public bool Filled { get; set; }
+        public double Salary { get; set; }
     
         public virtual Employer Employer { get; set; }
     }
