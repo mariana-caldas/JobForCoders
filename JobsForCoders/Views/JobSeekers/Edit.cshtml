@@ -6,7 +6,8 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm("Edit", "JobSeekers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -117,9 +118,75 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label col-md-2">Current CV file</label>
+            <div class="col-md-10">
+                <a href="~/Uploads/@Html.DisplayFor(model => model.CV)" target="_blank">
+                    Download
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Change CV file</label>
+            <div class="col-md-10">
+                <input type="file" name="CV" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Current Photo1</label>
+            <div class="col-md-10">
+                <a href="~/Uploads/@Html.DisplayFor(model => model.Photo1)" target="_blank">
+                    <img src="~/Uploads/@Html.DisplayFor(model => model.Photo1)" alt="" class="img-small" />
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Change Photo1 file</label>
+            <div class="col-md-10">
+                <input type="file" name="Photo1" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Current Photo2</label>
+            <div class="col-md-10">
+                <a href="~/Uploads/@Html.DisplayFor(model => model.Photo2)" target="_blank">
+                    <img src="~/Uploads/@Html.DisplayFor(model => model.Photo2)" alt="" class="img-small" />
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Change Photo2 file</label>
+            <div class="col-md-10">
+                <input type="file" name="Photo2" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Current Photo3</label>
+            <div class="col-md-10">
+                <a href="~/Uploads/@Html.DisplayFor(model => model.Photo3)" target="_blank">
+                    <img src="~/Uploads/@Html.DisplayFor(model => model.Photo3)" alt="" class="img-small" />
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Change Photo3 file</label>
+            <div class="col-md-10">
+                <input type="file" name="Photo3" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
+@Html.ActionLink("Delete Your Account", "Delete", new { id = Model.JobSeekerID })

@@ -14,8 +14,8 @@
     <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Operator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Logo" Type="String" />
-    <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="Max" Nullable="false" Unicode="true" FixedLength="false" />
+    <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="JobPosting">
     <Key>
@@ -48,6 +48,10 @@
     <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Operator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Photo1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Photo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Photo3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_JobPosting_Employer">
     <End Role="Employer" Type="Self.Employer" Multiplicity="1" />

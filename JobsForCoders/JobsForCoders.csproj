@@ -136,6 +136,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobPostingsController.cs" />
     <Compile Include="Controllers\JobSeekersController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +166,7 @@
     </Compile>
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Search.cs" />
+    <Compile Include="Models\SearchEmployers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +240,8 @@
     <Content Include="Views\JobSeekers\Details.cshtml" />
     <Content Include="Views\JobSeekers\Edit.cshtml" />
     <Content Include="Views\JobSeekers\Index.cshtml" />
+    <Content Include="Views\Search\Employers.cshtml" />
+    <Content Include="Views\Search\EmployersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

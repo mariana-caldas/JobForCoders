@@ -53,6 +53,18 @@
         <th>
             @Html.DisplayNameFor(model => model.Buzz_Words)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo3)
+        </th>
         <th></th>
     </tr>
 
@@ -96,6 +108,18 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Buzz_Words)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo3)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.JobSeekerID }) |

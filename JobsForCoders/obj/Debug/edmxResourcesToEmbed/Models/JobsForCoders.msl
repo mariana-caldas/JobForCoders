@@ -34,6 +34,10 @@
     <EntitySetMapping Name="JobSeekers">
       <EntityTypeMapping TypeName="jobsforcodersModel.JobSeeker">
         <MappingFragment StoreEntitySet="JobSeeker">
+          <ScalarProperty Name="CV" ColumnName="CV" />
+          <ScalarProperty Name="Photo3" ColumnName="Photo3" />
+          <ScalarProperty Name="Photo2" ColumnName="Photo2" />
+          <ScalarProperty Name="Photo1" ColumnName="Photo1" />
           <ScalarProperty Name="Operator" ColumnName="Operator" />
           <ScalarProperty Name="Buzz_Words" ColumnName="Buzz-Words" />
           <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />

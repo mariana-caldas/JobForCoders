@@ -28,5 +28,9 @@ namespace JobsForCoders.Models
         public string Cellphone { get; set; }
         public string Buzz_Words { get; set; }
         public string Operator { get; set; }
+        public string Photo1 { get; set; }
+        public string Photo2 { get; set; }
+        public string Photo3 { get; set; }
+        public string CV { get; set; }
     }
 }

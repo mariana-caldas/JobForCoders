@@ -110,6 +110,41 @@
         <dd>
             @Html.DisplayFor(model => model.Buzz_Words)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CV)
+        </dt>
+
+        <dd>
+            <a href="~/Uploads/@Html.DisplayFor(model => model.CV)" target="_blank">
+                Download
+            </a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo1)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.Photo1)" alt="" class="img-small" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo2)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.Photo2)" alt="" class="img-small" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo3)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.Photo3)" alt="" class="img-small" />
+        </dd>
+
     </dl>
 </div>
 <p>

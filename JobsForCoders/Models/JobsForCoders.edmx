@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employer">
           <Key>
             <PropertyRef Name="EmployerID" />
@@ -18,8 +18,8 @@
           <Property Name="Cellphone" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Operator" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Logo" Type="nvarchar(max)" />
-          <Property Name="History" Type="nvarchar(max)" />
+          <Property Name="Logo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="History" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="JobPosting">
           <Key>
@@ -51,6 +51,10 @@
           <Property Name="Cellphone" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Operator" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo1" Type="nvarchar(max)" />
+          <Property Name="Photo2" Type="nvarchar(max)" />
+          <Property Name="Photo3" Type="nvarchar(max)" />
+          <Property Name="CV" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_JobPosting_Employer">
           <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
@@ -91,8 +95,8 @@
           <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Logo" Type="String" />
-          <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="Max" Nullable="false" Unicode="true" FixedLength="false" />
+          <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="JobPosting">
           <Key>
@@ -125,6 +129,10 @@
           <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_JobPosting_Employer">
           <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
@@ -186,6 +194,10 @@
           <EntitySetMapping Name="JobSeekers">
             <EntityTypeMapping TypeName="jobsforcodersModel.JobSeeker">
               <MappingFragment StoreEntitySet="JobSeeker">
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Photo3" ColumnName="Photo3" />
+                <ScalarProperty Name="Photo2" ColumnName="Photo2" />
+                <ScalarProperty Name="Photo1" ColumnName="Photo1" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="Buzz_Words" ColumnName="Buzz-Words" />
                 <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />

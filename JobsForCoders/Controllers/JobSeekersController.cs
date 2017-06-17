@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using JobsForCoders.Models;
 using System.Net.Mail;
+using System.IO;
 using System.Threading.Tasks;
+using WebGrease.Activities;
 
 namespace JobsForCoders.Controllers
 {
@@ -42,10 +44,47 @@ namespace JobsForCoders.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker)
+        public async Task<ActionResult> Create([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker, HttpPostedFileBase Photo1, HttpPostedFileBase Photo2, HttpPostedFileBase Photo3, HttpPostedFileBase CV)
         {
             if (ModelState.IsValid)
             {
+                if (CV != null && CV.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(CV.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    CV.SaveAs(path);
+
+                    jobSeeker.CV = fileName;
+                }
+
+                if (Photo1 != null && Photo1.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Photo1.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    Photo1.SaveAs(path);
+
+                    jobSeeker.Photo1 = fileName;
+                }
+
+                if (Photo2 != null && Photo2.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Photo2.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    Photo2.SaveAs(path);
+
+                    jobSeeker.Photo2 = fileName;
+                }
+
+                if (Photo3 != null && Photo3.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Photo3.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    Photo1.SaveAs(path);
+
+                    jobSeeker.Photo3 = fileName;
+                }
+
+
                 db.JobSeekers.Add(jobSeeker);
                 db.SaveChanges();
 
@@ -227,11 +266,64 @@ namespace JobsForCoders.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker)
+        public ActionResult Edit([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker, HttpPostedFileBase Photo1, HttpPostedFileBase Photo2, HttpPostedFileBase Photo3, HttpPostedFileBase CV)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(jobSeeker).State = EntityState.Modified;
+
+                if (CV != null && CV.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(CV.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    CV.SaveAs(path);
+
+                    jobSeeker.CV = fileName;
+                }
+                else
+                {
+                    db.Entry(jobSeeker).Property(m => m.CV).IsModified = false;
+                }
+
+                if (Photo1 != null && Photo1.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Photo1.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    Photo1.SaveAs(path);
+
+                    jobSeeker.Photo1 = fileName;
+                }
+                else
+                {
+                    db.Entry(jobSeeker).Property(m => m.Photo1).IsModified = false;
+                }
+
+                if (Photo2 != null && Photo2.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Photo2.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    Photo2.SaveAs(path);
+
+                    jobSeeker.Photo2 = fileName;
+                }
+                else
+                {
+                    db.Entry(jobSeeker).Property(m => m.Photo2).IsModified = false;
+                }
+
+                if (Photo3 != null && Photo3.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Photo3.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    Photo3.SaveAs(path);
+
+                    jobSeeker.Photo3 = fileName;
+                }
+                else
+                {
+                    db.Entry(jobSeeker).Property(m => m.Photo3).IsModified = false;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }

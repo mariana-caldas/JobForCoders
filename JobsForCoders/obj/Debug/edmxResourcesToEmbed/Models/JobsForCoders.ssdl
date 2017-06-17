@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Employer">
     <Key>
       <PropertyRef Name="EmployerID" />
@@ -13,8 +13,8 @@
     <Property Name="Cellphone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Operator" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Logo" Type="nvarchar(max)" />
-    <Property Name="History" Type="nvarchar(max)" />
+    <Property Name="Logo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="History" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="JobPosting">
     <Key>
@@ -46,6 +46,10 @@
     <Property Name="Cellphone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Operator" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Photo1" Type="nvarchar(max)" />
+    <Property Name="Photo2" Type="nvarchar(max)" />
+    <Property Name="Photo3" Type="nvarchar(max)" />
+    <Property Name="CV" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_JobPosting_Employer">
     <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
