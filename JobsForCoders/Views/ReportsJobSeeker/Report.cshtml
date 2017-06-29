@@ -1,0 +1,37 @@
+﻿@model JobsForCoders.Models.Report
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<h2>Hello, @Model.JobSeeker.Name</h2>
+
+<p>Here is a list of your recent job applications.</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Position
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Application Date
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Applications)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobPosting.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobPosting.Employer.Name)
+            </td>         
+            <td>
+                @Html.DisplayFor(modelItem => item.Application_Date)
+            </td>
+        </tr>
+    }
+</table>
+

@@ -40,40 +40,20 @@
                         <li class="pull-right">
                             @Html.ActionLink("Logout", "Logout", "Home")
                         </li>
+                    }
 
-                                    }
                     @if (Session["LoggedUserType"] != null && Session["LoggedUserType"].ToString() == "Employers")
                     {
                         <li>@Html.ActionLink("Job Postings", "Index", "JobPostings")</li>
+                        <li>@Html.ActionLink("Search JobSeekers", "JobSeekers", "Search")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "ReportsEmployer")</li>
                     }
-                    else
+                    @if (Session["LoggedUserType"] != null && Session["LoggedUserType"].ToString() == "JobSeekers")
                     {
                         <li>@Html.ActionLink("Search Employers", "Employers", "Search")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "ReportsJobSeeker")</li>
                     }
-
-                </ul>
-                @*<ul class="nav navbar-nav pull-right">
-                    @if (Session["LoggedUser"] == null)
-                    {
-                        <li>@Html.ActionLink("Employer Login", "EmployerLogin", "Home")</li>
-                        <li>@Html.ActionLink("Employer Register", "Create", "Employers")</li>
-                    }
-                    else
-                    {
-                        <li>
-                            <a>
-                                @{ 
-                                    var loggedIn = Session["LoggedUserType"]  + " - " + Session["LoggedUser"];
-                                }
-                                @loggedIn                              
-                            </a>
-                        </li>
-                        <li class="pull-right">
-                            @Html.ActionLink("Logout", "Logout", "Home")
-                        </li>
-
-                    }*@
-                @*</ul>*@
+                </ul>                
             </div>
         </div>
     </div>

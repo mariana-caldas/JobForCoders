@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="JobSeekerID" Type="int" Nullable="false" />
+          <Property Name="Application_Date" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Employer">
           <Key>
             <PropertyRef Name="EmployerID" />
@@ -12,14 +21,14 @@
           <Property Name="EmployerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Cellphone" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Operator" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Logo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="History" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Logo" Type="nvarchar(max)" />
+          <Property Name="History" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="JobPosting">
           <Key>
@@ -43,6 +52,8 @@
           <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Birthdate" Type="date" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Education" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Objectives" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Introduction" Type="nvarchar(max)" Nullable="false" />
@@ -57,6 +68,18 @@
           <Property Name="Photo3" Type="nvarchar(max)" />
           <Property Name="CV" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_JobID_ToTable">
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
+          <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_JobPosting_Employer">
           <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
           <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
@@ -69,13 +92,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_JobSeekerID_ToTable">
+          <End Role="JobSeeker" Type="Self.JobSeeker" Multiplicity="1" />
+          <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobSeeker">
+              <PropertyRef Name="JobSeekerID" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="JobSeekerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="jobsforcodersModelStoreContainer">
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPosting" EntityType="Self.JobPosting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobSeeker" EntityType="Self.JobSeeker" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JobID_ToTable" Association="Self.FK_JobID_ToTable">
+            <End Role="JobPosting" EntitySet="JobPosting" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
           <AssociationSet Name="FK_JobPosting_Employer" Association="Self.FK_JobPosting_Employer">
             <End Role="Employer" EntitySet="Employer" />
             <End Role="JobPosting" EntitySet="JobPosting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobSeekerID_ToTable" Association="Self.FK_JobSeekerID_ToTable">
+            <End Role="JobSeeker" EntitySet="JobSeeker" />
+            <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -89,15 +133,15 @@
           <Property Name="EmployerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="JobPostings" Relationship="Self.FK_JobPosting_Employer" FromRole="Employer" ToRole="JobPosting" />
           <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Logo" Type="String" MaxLength="Max" Nullable="false" Unicode="true" FixedLength="false" />
-          <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Logo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
         </EntityType>
         <EntityType Name="JobPosting">
           <Key>
@@ -112,6 +156,7 @@
           <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Filled" Type="Boolean" Nullable="false" />
           <Property Name="Salary" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Applications" Relationship="jobsforcodersModel.FK_JobID_ToTable" FromRole="JobPosting" ToRole="Application" />
         </EntityType>
         <EntityType Name="JobSeeker">
           <Key>
@@ -131,10 +176,13 @@
           <Property Name="Cellphone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Buzz_Words" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Photo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Photo3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="CV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Applications" Relationship="jobsforcodersModel.FK_JobSeekerID_ToTable" FromRole="JobSeeker" ToRole="Application" />
         </EntityType>
         <Association Name="FK_JobPosting_Employer">
           <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
@@ -156,7 +204,51 @@
             <End Role="Employer" EntitySet="Employers" />
             <End Role="JobPosting" EntitySet="JobPostings" />
           </AssociationSet>
+          <EntitySet Name="Applications" EntityType="jobsforcodersModel.Application" />
+          <AssociationSet Name="FK_JobID_ToTable" Association="jobsforcodersModel.FK_JobID_ToTable">
+            <End Role="JobPosting" EntitySet="JobPostings" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobSeekerID_ToTable" Association="jobsforcodersModel.FK_JobSeekerID_ToTable">
+            <End Role="JobSeeker" EntitySet="JobSeekers" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobID" Type="Int32" Nullable="false" />
+          <Property Name="JobSeekerID" Type="Int32" Nullable="false" />
+          <Property Name="Application_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="JobPosting" Relationship="jobsforcodersModel.FK_JobID_ToTable" FromRole="Application" ToRole="JobPosting" />
+          <NavigationProperty Name="JobSeeker" Relationship="jobsforcodersModel.FK_JobSeekerID_ToTable" FromRole="Application" ToRole="JobSeeker" />
+        </EntityType>
+        <Association Name="FK_JobID_ToTable">
+          <End Type="jobsforcodersModel.JobPosting" Role="JobPosting" Multiplicity="1" />
+          <End Type="jobsforcodersModel.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobSeekerID_ToTable">
+          <End Type="jobsforcodersModel.JobSeeker" Role="JobSeeker" Multiplicity="1" />
+          <End Type="jobsforcodersModel.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobSeeker">
+              <PropertyRef Name="JobSeekerID" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="JobSeekerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -197,6 +289,8 @@
           <EntitySetMapping Name="JobSeekers">
             <EntityTypeMapping TypeName="jobsforcodersModel.JobSeeker">
               <MappingFragment StoreEntitySet="JobSeeker">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CV" ColumnName="CV" />
                 <ScalarProperty Name="Photo3" ColumnName="Photo3" />
                 <ScalarProperty Name="Photo2" ColumnName="Photo2" />
@@ -215,6 +309,16 @@
                 <ScalarProperty Name="Links" ColumnName="Links" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="jobsforcodersModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="Application_Date" ColumnName="Application_Date" />
+                <ScalarProperty Name="JobSeekerID" ColumnName="JobSeekerID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

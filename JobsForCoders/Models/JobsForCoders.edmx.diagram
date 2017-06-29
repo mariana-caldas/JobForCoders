@@ -9,6 +9,9 @@
         <EntityTypeShape EntityType="jobsforcodersModel.JobPosting" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="jobsforcodersModel.JobSeeker" Width="1.5" PointX="5.125" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="jobsforcodersModel.FK_JobPosting_Employer" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="jobsforcodersModel.Application" Width="1.5" PointX="7.375" PointY="2.5" />
+        <AssociationConnector Association="jobsforcodersModel.FK_JobID_ToTable" />
+        <AssociationConnector Association="jobsforcodersModel.FK_JobSeekerID_ToTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

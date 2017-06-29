@@ -44,7 +44,7 @@ namespace JobsForCoders.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker, HttpPostedFileBase Photo1, HttpPostedFileBase Photo2, HttpPostedFileBase Photo3, HttpPostedFileBase CV)
+        public async Task<ActionResult> Create([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Address,City,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker, HttpPostedFileBase Photo1, HttpPostedFileBase Photo2, HttpPostedFileBase Photo3, HttpPostedFileBase CV)
         {
             if (ModelState.IsValid)
             {
@@ -266,7 +266,7 @@ namespace JobsForCoders.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker, HttpPostedFileBase Photo1, HttpPostedFileBase Photo2, HttpPostedFileBase Photo3, HttpPostedFileBase CV)
+        public ActionResult Edit([Bind(Include = "JobSeekerID,Name,Surname,Birthdate,Gender,Address,City,Education,Objectives,Introduction,Links,Email,Password,Cellphone,Operator,Buzz_Words")] JobSeeker jobSeeker, HttpPostedFileBase Photo1, HttpPostedFileBase Photo2, HttpPostedFileBase Photo3, HttpPostedFileBase CV)
         {
             if (ModelState.IsValid)
             {
@@ -323,7 +323,7 @@ namespace JobsForCoders.Controllers
                 {
                     db.Entry(jobSeeker).Property(m => m.Photo3).IsModified = false;
                 }
-
+                //ModelState.Clear();
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }

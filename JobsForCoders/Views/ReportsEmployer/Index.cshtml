@@ -1,0 +1,33 @@
+﻿@model JobsForCoders.Models.Report
+
+<h2>Employer Report Generator</h2>
+
+@using (Html.BeginForm("Export", "ReportsEmployer", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="whatwhere">Date from:</h4>
+            @Html.EditorFor(model => model.DateFrom, new { @class = "form-control", placeholder = "2017/01/01" })
+        </div>
+        <div class="col-md-4">
+            <h4 class="whatwhere">Date to:</h4>
+            @Html.EditorFor(model => model.DateTo, new { @class = "form-control", placeholder = "2017/06/24" })
+        </div>
+        <div class="col-md-4">
+            <h4 class="whatwhere">Export Option:</h4>
+            <p>@Html.RadioButtonFor(x => x.ExportTo, "pdf", new { @checked = "checked" }) PDF</p>
+            <p>@Html.RadioButtonFor(x => x.ExportTo, "word") Word</p>
+        </div>
+        <div class="col-md-4">
+            <h4 class="whatwhere">JobSeeker Name:</h4>
+            @Html.EditorFor(model => model.JobSeekerName, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            <h4 class="whatwhere">Position:</h4>
+            @Html.EditorFor(model => model.Position, new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Export Report" class="btn btn-default btn-login" />
+        </div>
+    </div>
+}

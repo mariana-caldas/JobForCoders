@@ -1,0 +1,31 @@
+﻿@model JobsForCoders.Models.SearchJobSeekers
+
+<div class="jumbotron">
+    <h1>Jobs for #Coders</h1>
+    <h3>If you are a Developer looking for a new position in Vancouver BC, this is your place.</h3>
+</div>
+
+@using (Html.BeginForm("JobSeekersList", "Search", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-5">
+            <h4 class="whatwhere">City</h4>
+            @Html.TextBoxFor(model => model.City, new { @class = "form-control", placeholder = "Vancouver" })
+        </div>
+        <div class="col-md-5">
+            <h4 class="whatwhere">Address</h4>
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Yaletown" })
+        </div>
+        <div class="col-md-5">
+            <h4 class="whatwhere">Buzz_Words</h4>
+            @Html.TextBoxFor(model => model.Buzz_Words, new { @class = "form-control", placeholder = "Developer" })
+        </div>
+        <div class="col-md-5">
+            <h4 class="whatwhere">Birthdate</h4>
+            @Html.TextBoxFor(model => model.Birthdate, new { @class = "form-control", placeholder = "1985/25/01" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Find JobSeekers" class="btn btn-default btn-login" />
+        </div>
+    </div>
+}

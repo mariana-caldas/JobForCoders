@@ -53,7 +53,7 @@ namespace JobsForCoders.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "JobID,EmployerID,Name,Position,Description,Buzz_Words,Filled")] JobPosting jobPosting)
+        public async Task<ActionResult> Create([Bind(Include = "JobID,EmployerID,Name,Position,Description,Buzz_Words,Filled,Salary")] JobPosting jobPosting)
         {
             if (ModelState.IsValid)
             {
@@ -166,7 +166,7 @@ namespace JobsForCoders.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "JobID,EmployerID,Name,Position,Description,Buzz_Words,Filled")] JobPosting jobPosting)
+        public async Task<ActionResult> Edit([Bind(Include = "JobID,EmployerID,Name,Position,Description,Buzz_Words,Filled,Salary")] JobPosting jobPosting)
         {
             if (ModelState.IsValid)
             {

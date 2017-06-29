@@ -54,6 +54,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Salary)
+                @Html.ValidationMessageFor(model => model.Salary)
+            </div>
+        </div>        
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Filled, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Filled, new { @checked = false })

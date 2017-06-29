@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="jobsforcodersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Applications">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobID" Type="int" Nullable="false" />
+    <Property Name="JobSeekerID" Type="int" Nullable="false" />
+    <Property Name="Application_Date" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="Employer">
     <Key>
       <PropertyRef Name="EmployerID" />
@@ -7,14 +16,14 @@
     <Property Name="EmployerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Cellphone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Operator" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Logo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="History" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar(max)" />
+    <Property Name="History" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="JobPosting">
     <Key>
@@ -27,6 +36,7 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Buzz-Words" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Filled" Type="bit" Nullable="false" />
+    <Property Name="Salary" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="JobSeeker">
     <Key>
@@ -37,6 +47,8 @@
     <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Birthdate" Type="date" Nullable="false" />
     <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Education" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Objectives" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Introduction" Type="nvarchar(max)" Nullable="false" />
@@ -51,6 +63,18 @@
     <Property Name="Photo3" Type="nvarchar(max)" />
     <Property Name="CV" Type="nvarchar(max)" />
   </EntityType>
+  <Association Name="FK_JobID_ToTable">
+    <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobPosting">
+        <PropertyRef Name="JobID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_JobPosting_Employer">
     <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
     <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
@@ -63,13 +87,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_JobSeekerID_ToTable">
+    <End Role="JobSeeker" Type="Self.JobSeeker" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobSeeker">
+        <PropertyRef Name="JobSeekerID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="JobSeekerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="jobsforcodersModelStoreContainer">
+    <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobPosting" EntityType="Self.JobPosting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobSeeker" EntityType="Self.JobSeeker" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_JobID_ToTable" Association="Self.FK_JobID_ToTable">
+      <End Role="JobPosting" EntitySet="JobPosting" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
     <AssociationSet Name="FK_JobPosting_Employer" Association="Self.FK_JobPosting_Employer">
       <End Role="Employer" EntitySet="Employer" />
       <End Role="JobPosting" EntitySet="JobPosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobSeekerID_ToTable" Association="Self.FK_JobSeekerID_ToTable">
+      <End Role="JobSeeker" EntitySet="JobSeeker" />
+      <End Role="Applications" EntitySet="Applications" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

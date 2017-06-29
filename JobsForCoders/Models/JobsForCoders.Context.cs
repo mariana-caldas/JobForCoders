@@ -28,5 +28,6 @@ namespace JobsForCoders.Models
         public DbSet<Employer> Employers { get; set; }
         public DbSet<JobPosting> JobPostings { get; set; }
         public DbSet<JobSeeker> JobSeekers { get; set; }
+        public DbSet<Application> Applications { get; set; }
     }
 }

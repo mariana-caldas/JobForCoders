@@ -21,6 +21,7 @@
     <EntitySetMapping Name="JobPostings">
       <EntityTypeMapping TypeName="jobsforcodersModel.JobPosting">
         <MappingFragment StoreEntitySet="JobPosting">
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
           <ScalarProperty Name="Filled" ColumnName="Filled" />
           <ScalarProperty Name="Buzz_Words" ColumnName="Buzz-Words" />
           <ScalarProperty Name="JobID" ColumnName="JobID" />
@@ -34,6 +35,8 @@
     <EntitySetMapping Name="JobSeekers">
       <EntityTypeMapping TypeName="jobsforcodersModel.JobSeeker">
         <MappingFragment StoreEntitySet="JobSeeker">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="CV" ColumnName="CV" />
           <ScalarProperty Name="Photo3" ColumnName="Photo3" />
           <ScalarProperty Name="Photo2" ColumnName="Photo2" />
@@ -52,6 +55,16 @@
           <ScalarProperty Name="Links" ColumnName="Links" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="jobsforcodersModel.Application">
+        <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="Application_Date" ColumnName="Application_Date" />
+          <ScalarProperty Name="JobSeekerID" ColumnName="JobSeekerID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<JobsForCoders.Models.JobPosting>
 
+
 <h2>Job List</h2>
 
 <table class="table">
@@ -13,7 +14,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        >
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            &nbsp;
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -28,9 +34,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
            
+            <td>
+                @Html.ActionLink("Apply", "Apply", new { JobID = item.JobID }) 
+            </td>
             
         </tr>
+             
+        
     }
-
+    
 </table>
+

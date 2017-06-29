@@ -57,6 +57,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NReco.PdfGenerator, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NReco.PdfGenerator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -136,9 +140,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobPostingsController.cs" />
     <Compile Include="Controllers\JobSeekersController.cs" />
+    <Compile Include="Controllers\ReportsEmployerController.cs" />
+    <Compile Include="Controllers\ReportsJobSeekerController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Application.cs">
+      <DependentUpon>JobsForCoders.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employer.cs">
       <DependentUpon>JobsForCoders.tt</DependentUpon>
@@ -149,6 +158,7 @@
     <Compile Include="Models\JobSeeker.cs">
       <DependentUpon>JobsForCoders.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\JobsForCoders.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,6 +177,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Search.cs" />
     <Compile Include="Models\SearchEmployers.cs" />
+    <Compile Include="Models\SearchJobSeeker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +253,13 @@
     <Content Include="Views\JobSeekers\Index.cshtml" />
     <Content Include="Views\Search\Employers.cshtml" />
     <Content Include="Views\Search\EmployersList.cshtml" />
+    <Content Include="Views\Search\JobSeekers.cshtml" />
+    <Content Include="Views\Search\JobSeekersList.cshtml" />
+    <Content Include="Views\Home\Apply.cshtml" />
+    <Content Include="Views\ReportsJobSeeker\Index.cshtml" />
+    <Content Include="Views\ReportsJobSeeker\Report.cshtml" />
+    <Content Include="Views\ReportsEmployer\Report.cshtml" />
+    <Content Include="Views\ReportsEmployer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

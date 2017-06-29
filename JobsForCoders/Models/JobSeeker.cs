@@ -14,6 +14,11 @@ namespace JobsForCoders.Models
     
     public partial class JobSeeker
     {
+        public JobSeeker()
+        {
+            this.Applications = new HashSet<Application>();
+        }
+    
         public int JobSeekerID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -32,5 +37,9 @@ namespace JobsForCoders.Models
         public string Photo2 { get; set; }
         public string Photo3 { get; set; }
         public string CV { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+    
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

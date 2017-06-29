@@ -14,6 +14,11 @@ namespace JobsForCoders.Models
     
     public partial class JobPosting
     {
+        public JobPosting()
+        {
+            this.Applications = new HashSet<Application>();
+        }
+    
         public int JobID { get; set; }
         public int EmployerID { get; set; }
         public string Name { get; set; }
@@ -24,5 +29,6 @@ namespace JobsForCoders.Models
         public double Salary { get; set; }
     
         public virtual Employer Employer { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

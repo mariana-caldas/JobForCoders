@@ -13,14 +13,14 @@
 {
     <div class="row">
         <div class="col-md-5">
-            <h4 class="whatwhere">What</h4>
-            @Html.TextBoxFor(model => model.What, new { @class = "form-control", placeholder = "" })
-            <label class="labelcolor">job title, keywords or company name</label>
+            <h4 class="whatwhere">&nbsp;What</h4>
+            @Html.TextBoxFor(model => model.What, new { @class = "form-control", placeholder = "Web Developer" })
+            <label class="labelcolor">&nbsp;Job title, keyword or company name.</label>
         </div>
         <div class="col-md-5">
-            <h4 class="whatwhere">Where</h4>
-            @Html.TextBoxFor(model => model.Where, new { @class = "form-control", placeholder = "Vancouver,BC" })
-            <label class="labelcolor">	city or province</label>
+            <h4 class="whatwhere">&nbsp;Where</h4>
+            @Html.TextBoxFor(model => model.Where, new { @class = "form-control", placeholder = "Vancouver, BC" })
+            <label class="labelcolor">&nbsp;City</label>
         </div>
         <div class="col-md-2">
             <input type="submit" value="Find Jobs" class="btn btn-default btn-login" />

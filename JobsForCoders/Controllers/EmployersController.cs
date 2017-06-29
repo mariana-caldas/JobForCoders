@@ -198,13 +198,15 @@ namespace JobsForCoders.Controllers
                 {
                     db.Entry(employer).Property(m => m.Logo).IsModified = false;
                 }
-                
-                db.SaveChanges();                
+
+                ModelState.Clear();
+
+                db.SaveChanges();
 
                 return RedirectToAction("Index", "Home");
             }
             return View(employer);
-       
+
 
         }
 

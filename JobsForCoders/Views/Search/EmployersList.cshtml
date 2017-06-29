@@ -17,13 +17,7 @@
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Cellphone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Operator)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Buzz_Words)
@@ -52,19 +46,15 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Cellphone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Operator)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Buzz_Words)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.History)
+                <a href="~/Uploads/@Html.DisplayFor(modelItem => item.History)" target="_blank">
+                    Download
+                </a>
             </td>
             <td>
                 <img src="~/Uploads/@Html.DisplayFor(modelItem => item.Logo)" alt="" class="img-small" />
